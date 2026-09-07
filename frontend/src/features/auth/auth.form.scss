@@ -1,0 +1,179 @@
+@use '../../styles/tokens' as *;
+
+
+main.auth-page {
+    min-height: 100dvh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(1.5rem, 5vw, 3rem) 1rem;
+    background: radial-gradient(circle at 10% 0, rgba(183, 45, 105, 0.07), transparent 28rem), $canvas;
+    color: $ink;
+    box-sizing: border-box;
+
+    .form-container {
+        width: 100%;
+        max-width: 420px;
+        background: $surface;
+        border: 1px solid $line;
+        border-radius: 12px;
+        padding: clamp(1.75rem, 5vw, 2.5rem);
+        box-shadow: 0 16px 36px -12px rgba(23, 32, 42, 0.08);
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        box-sizing: border-box;
+
+        .auth-brand {
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: $accent;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+        }
+
+        h1 {
+            font-family: $serif;
+            font-size: clamp(1.85rem, 4vw, 2.25rem);
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            margin: 0;
+            color: $ink;
+        }
+
+        .auth-lead {
+            color: $muted;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+    }
+
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        width: 100%;
+
+        label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: $ink;
+        }
+
+        input {
+            width: 100%;
+            border: 1px solid $line;
+            background: #ffffff;
+            color: $ink;
+            font-size: 0.95rem;
+            font-family: inherit;
+            padding: 0.75rem 0.9rem;
+            border-radius: 7px;
+            box-sizing: border-box;
+            transition: border-color $duration-fast $ease-out, box-shadow $duration-fast $ease-out;
+
+            &::placeholder {
+                color: #9ba3af;
+            }
+
+            &:focus-visible {
+                border-color: $accent;
+                outline: 3px solid $focus-ring;
+                outline-offset: 1px;
+            }
+        }
+    }
+
+    .form-meta {
+        font-size: 0.9rem;
+        color: $muted;
+        text-align: center;
+        margin-top: 0.5rem;
+
+        a {
+            color: $accent;
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: color $duration-fast $ease-out;
+
+            &:hover,
+            &:focus-visible {
+                color: $accent-dark;
+            }
+        }
+    }
+
+    .form-error {
+        background: #fdf2f2;
+        border: 1px solid #f1b3b3;
+        color: #9f1c1c;
+        padding: 0.75rem 1rem;
+        border-radius: 7px;
+        font-size: 0.88rem;
+        font-weight: 500;
+        line-height: 1.45;
+        margin: 0;
+        animation: error-shake $duration-normal $ease-spring both;
+    }
+
+    .auth-loading-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 2.5rem 3rem;
+        background: $surface;
+        border: 1px solid $line;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        color: $muted;
+        box-shadow: 0 16px 36px -12px rgba(23, 32, 42, 0.08);
+
+        .auth-spinner {
+            width: 2rem;
+            height: 2rem;
+            border: 3px solid $line;
+            border-top-color: $accent;
+            border-radius: 50%;
+            animation: auth-spin 800ms linear infinite;
+        }
+    }
+}
+
+@keyframes error-shake {
+    0% {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    30% {
+        opacity: 1;
+        transform: translateY(0) translateX(-3px);
+    }
+    60% {
+        transform: translateX(3px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes auth-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    main.auth-page .auth-spinner {
+        animation: none;
+    }
+}
