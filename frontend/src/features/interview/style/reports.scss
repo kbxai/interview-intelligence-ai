@@ -1,0 +1,206 @@
+@use '../../../styles/tokens' as *;
+
+
+.reports-page {
+    min-height: 100dvh;
+    padding: clamp(2rem, 6vw, 5rem) clamp(1rem, 5vw, 4rem);
+    color: $ink;
+    background: radial-gradient(circle at 100% 0, rgba(183, 45, 105, 0.08), transparent 25rem), $canvas;
+
+    .reports-header,
+    .reports-list,
+    .reports-state {
+        width: min(100%, 1080px);
+        margin-inline: auto;
+    }
+
+    .reports-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .reports-kicker,
+    .report-row-date {
+        color: $accent;
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+    }
+
+    h1 {
+        margin-top: 0.5rem;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-weight: 400;
+        letter-spacing: -0.05em;
+        line-height: 0.95;
+    }
+
+    .reports-header p {
+        max-width: 42ch;
+        margin-top: 1rem;
+        color: $muted;
+        line-height: 1.6;
+    }
+
+    button {
+        border: 1px solid $line;
+        border-radius: 6px;
+        padding: 0.75rem 0.9rem;
+        background: $surface;
+        color: $muted;
+        font: inherit;
+        font-size: 0.75rem;
+        font-weight: 750;
+        cursor: pointer;
+        transition: border-color 160ms ease, color 160ms ease, background 160ms ease, transform 160ms ease;
+
+        &:hover,
+        &:focus-visible {
+            border-color: $accent;
+            color: $accent;
+        }
+
+        &:focus-visible {
+            outline: 3px solid rgba(183, 45, 105, 0.18);
+            outline-offset: 2px;
+        }
+    }
+
+    .reports-primary-action {
+        border-color: $accent;
+        background: $accent;
+        color: white;
+
+        &:hover,
+        &:focus-visible { background: #8f1f50; color: white; }
+    }
+
+    .reports-list {
+        border-top: 1px solid $line;
+    }
+
+    .reports-list-heading {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.9rem 0;
+        color: $muted;
+        font-size: 0.7rem;
+        font-weight: 750;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+    }
+
+    .report-row {
+        display: grid;
+        grid-template-columns: 2.5rem minmax(0, 1fr) auto auto;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.35rem 0;
+        border-top: 1px solid $line;
+        transition: padding $duration-normal $ease-out, background-color $duration-normal $ease-out;
+        animation: row-fade-in $duration-normal $ease-out both;
+
+        &:nth-child(1) { animation-delay: 0ms; }
+        &:nth-child(2) { animation-delay: 40ms; }
+        &:nth-child(3) { animation-delay: 80ms; }
+        &:nth-child(4) { animation-delay: 120ms; }
+        &:nth-child(5) { animation-delay: 160ms; }
+        &:nth-child(6) { animation-delay: 200ms; }
+
+        &:hover { padding-inline: 0.75rem; background: rgba(255, 253, 250, 0.7); }
+    }
+
+    .report-row-index {
+        color: $accent;
+        font-size: 0.78rem;
+        font-weight: 800;
+    }
+
+    .report-row-copy {
+        min-width: 0;
+
+        h2 {
+            overflow: hidden;
+            margin-top: 0.35rem;
+            font-size: 1.05rem;
+            font-weight: 750;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        p {
+            margin-top: 0.4rem;
+            color: $muted;
+            font-size: 0.76rem;
+        }
+    }
+
+    .report-row-score {
+        min-width: 5rem;
+        padding-inline-start: 1rem;
+        border-inline-start: 1px solid $line;
+        color: $muted;
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-align: end;
+
+        strong {
+            display: block;
+            margin-top: 0.2rem;
+            color: $ink;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.55rem;
+            font-weight: 400;
+        }
+
+        small { color: $muted; font-family: inherit; font-size: 0.68rem; }
+    }
+
+    .report-open-action { white-space: nowrap; }
+
+    .reports-state {
+        min-height: 20rem;
+        display: grid;
+        place-items: center;
+        align-content: center;
+        gap: 0.75rem;
+        padding: 2rem;
+        border: 1px solid $line;
+        border-radius: 10px;
+        background: $surface;
+        text-align: center;
+
+        .state-mark { color: $accent; font-size: 1.3rem; font-weight: 800; letter-spacing: 0.2em; }
+        h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.8rem; font-weight: 400; }
+        p { max-width: 38ch; color: $muted; line-height: 1.6; }
+    }
+
+    .reports-loading { border-top: 0; }
+    .loading-label { display: block; margin-bottom: 0.75rem; color: $muted; font-size: 0.78rem; }
+    .report-skeleton { height: 5rem; margin-bottom: 1px; background: linear-gradient(90deg, #eeeae4 25%, #f8f5f1 50%, #eeeae4 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
+}
+
+@keyframes shimmer { to { background-position: -200% 0; } }
+@keyframes row-fade-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 700px) {
+    .reports-page {
+        .reports-header { align-items: flex-start; flex-direction: column; }
+        .reports-primary-action { width: 100%; }
+        .report-row { grid-template-columns: 1.75rem minmax(0, 1fr) auto; gap: 0.7rem; }
+        .report-row-score { grid-column: 2; grid-row: 2; justify-self: start; border-inline-start: 0; padding-inline-start: 0; text-align: start; }
+        .report-open-action { grid-column: 3; grid-row: 1 / span 2; }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reports-page button,
+    .reports-page .report-row,
+    .reports-page .report-skeleton { transition: none; animation: none; }
+}
