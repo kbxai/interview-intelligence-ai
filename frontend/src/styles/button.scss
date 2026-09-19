@@ -1,0 +1,47 @@
+@use './tokens' as *;
+
+.button {
+    border: none;
+    padding-inline: 1.5rem;
+    padding-block: 0.85rem;
+    min-height: 44px;
+    border-radius: 7px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: inherit;
+    transition: transform $duration-fast $ease-spring, box-shadow $duration-fast $ease-out, background-color $duration-fast $ease-out, opacity $duration-fast $ease-out;
+
+    &:focus:not(:focus-visible) {
+        outline: none;
+    }
+
+    &:focus-visible {
+        outline: 3px solid $focus-ring;
+        outline-offset: 2px;
+    }
+
+    &.primary-button {
+        background-color: $accent;
+        color: #ffffff;
+        cursor: pointer;
+
+        &:hover:not(:disabled) {
+            background-color: $accent-dark;
+            box-shadow: 0 4px 12px rgba(183, 45, 105, 0.2);
+        }
+
+        &:focus-visible {
+            outline: 3px solid $focus-ring;
+            outline-offset: 2px;
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    }
+
+    &:active:not(:disabled) {
+        transform: scale(0.98);
+    }
+}
