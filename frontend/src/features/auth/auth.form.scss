@@ -86,8 +86,8 @@ main.auth-page {
 
             &:focus-visible {
                 border-color: $accent;
-                outline: 3px solid $focus-ring;
-                outline-offset: 1px;
+                outline: none;
+                box-shadow: 0 0 0 3px $focus-ring;
             }
         }
     }

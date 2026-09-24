@@ -56,6 +56,23 @@ const Landing = () => {
                     )}
                     <a href="#preview" className="cta-secondary">See sample report</a>
                 </div>
+
+                <div className="hero-trust-bar">
+                    <div className="trust-item">
+                        <span className="trust-number">10,000+</span>
+                        <span className="trust-label">Questions mapped</span>
+                    </div>
+                    <div className="trust-divider" />
+                    <div className="trust-item">
+                        <span className="trust-number">100%</span>
+                        <span className="trust-label">Evidence-grounded</span>
+                    </div>
+                    <div className="trust-divider" />
+                    <div className="trust-item">
+                        <span className="trust-number">3 Min</span>
+                        <span className="trust-label">Average briefing time</span>
+                    </div>
+                </div>
             </section>
 
             <section id="preview" className="preview-card-wrap" aria-label="Sample Analysis Preview">
@@ -193,7 +210,36 @@ const Landing = () => {
             </section>
 
             <footer className="landing-footer">
-                <p>&copy; {new Date().getFullYear()} Interview Intelligence. Evidence-based interview coaching and resume studio.</p>
+                <div className="footer-content">
+                    <div className="footer-brand">
+                        <Link to="/" className="brand-link">
+                            Interview Intelligence
+                            <span className="brand-badge">Studio</span>
+                        </Link>
+                        <p className="footer-tagline">
+                            Evidence-based interview coaching and clean ATS-tailored resume generation.
+                        </p>
+                    </div>
+
+                    <div className="footer-nav">
+                        <div className="footer-col">
+                            <span className="footer-col-title">Platform</span>
+                            <a href="#how-it-works">How it works</a>
+                            <a href="#features">Features</a>
+                            <a href="#preview">Preview</a>
+                            <a href="#faq">FAQ</a>
+                        </div>
+                        <div className="footer-col">
+                            <span className="footer-col-title">Account</span>
+                            <Link to="/login">Sign in</Link>
+                            <Link to="/register">Create account</Link>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="footer-bottom">
+                    <p>&copy; {new Date().getFullYear()} Interview Intelligence. All rights reserved.</p>
+                </div>
             </footer>
         </main>
     );

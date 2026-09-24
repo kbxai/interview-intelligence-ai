@@ -27,7 +27,7 @@
 
         &:hover:not(:disabled) {
             background-color: $accent-dark;
-            box-shadow: 0 4px 12px rgba(183, 45, 105, 0.2);
+            box-shadow: 0 6px 18px rgba(183, 45, 105, 0.28);
         }
 
         &:focus-visible {
