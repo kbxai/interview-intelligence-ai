@@ -62,9 +62,9 @@ const Landing = () => {
                 <div className="preview-card">
                     <div className="preview-top">
                         <div className="preview-title-group">
-                            <span className="eyebrow">Sample briefing</span>
-                            <h3>Senior Full Stack Engineer Preparation</h3>
-                            <span className="preview-sub">Based on uploaded resume and target job requirements</span>
+                            <span className="eyebrow">Simulated Demo Example</span>
+                            <h3>Example Role: Full Stack Engineer</h3>
+                            <span className="preview-sub">Illustrative sample showing how our AI organizes interview questions and skill gaps</span>
                         </div>
                         <div className="preview-score-box">
                             <span>Role Match</span>

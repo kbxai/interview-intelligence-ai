@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useAuth } from '../../auth/hooks/useAuth';
 import { getInterviewReports } from '../services/interview.api';
 import '../style/reports.scss';
 
 const Reports = () => {
     const navigate = useNavigate();
+    const { user, handleLogout } = useAuth();
     const [reports, setReports] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [retryToken, setRetryToken] = useState(0);
+
+    async function onLogout() {
+        await handleLogout();
+        navigate('/login');
+    }
 
     useEffect(() => {
         let active = true;
@@ -51,8 +58,16 @@ const Reports = () => {
                     <span className="reports-kicker">Interview intelligence</span>
                     <h1>Recent reports</h1>
                     <p>Return to your preparation whenever you need a sharper next step.</p>
+                    {user?.username && (
+                        <p style={{ marginTop: '0.25rem', fontSize: '0.875rem', opacity: 0.85 }}>
+                            Account: <strong>{user.username}</strong>
+                        </p>
+                    )}
                 </div>
-                <button className="reports-primary-action" type="button" onClick={() => navigate('/app')}>New report <span aria-hidden="true">-&gt;</span></button>
+                <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+                    <button className="reports-primary-action" type="button" onClick={() => navigate('/app')}>New report <span aria-hidden="true">-&gt;</span></button>
+                    <button type="button" style={{ background: 'transparent', border: '1px solid currentColor', padding: '0.5rem 1rem', borderRadius: '4px', cursor: 'pointer' }} onClick={onLogout}>Log out</button>
+                </div>
             </header>
 
             {loading && <ReportsLoading />}

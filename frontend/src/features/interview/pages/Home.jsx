@@ -14,7 +14,7 @@ const PROGRESS_STAGES = [
 
 const Home = () => {
     const navigate = useNavigate();
-    const { handleLogout } = useAuth();
+    const { handleLogout, user } = useAuth();
     const [resumeName, setResumeName] = useState('No PDF selected');
     const [jobLength, setJobLength] = useState(0);
     const [jobDescription, setJobDescription] = useState('');
@@ -107,6 +107,7 @@ const Home = () => {
                 <div className="header-status" aria-label="Analysis status">
                     <span className="status-dot" />
                     <span>Ready to analyze</span>
+                    {user?.username && <span>Account: <strong>{user.username}</strong></span>}
                     <button type="button" className="reports-link" onClick={() => navigate('/')}>Home</button>
                     <button type="button" className="reports-link" onClick={() => navigate('/reports')}>Reports</button>
                     <button type="button" className="logout-button" onClick={handleLogoutClick}>Log out</button>

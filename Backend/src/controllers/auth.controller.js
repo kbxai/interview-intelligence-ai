@@ -57,6 +57,7 @@ async function registerUserController(req, res) {
 
     res.status(201).json({
         message: "User registered successfully",
+        token: token,
         user: {
             id: user._id,
             username: user.username,
@@ -106,6 +107,7 @@ async function loginUserController(req, res) {
     res.cookie("token", token, cookieOptions)
     res.status(200).json({
         message: "User loggedIn successfully.",
+        token: token,
         user: {
             id: user._id,
             username: user.username,
