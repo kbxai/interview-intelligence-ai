@@ -1,5 +1,26 @@
 # Interview Intelligence & ATS Resume Studio
 
+> **Live demo:** https://interview-ai-assistance.vercel.app/app (React frontend on Vercel, Express API on Render)
+
+| | |
+|---|---|
+| **What it does** | Turns a resume and a job description into an interview report: likely questions with answers grounded in the candidate's own evidence, skill gaps ranked by severity, and a day-by-day prep roadmap. Also generates ATS-style resume Markdown and exports it to PDF. |
+| **Stack** | React 19, Vite 8, Node.js, Express 5, MongoDB (Mongoose 9), Google Gemini (`@google/genai`), Zod, JWT, Puppeteer, Docker |
+| **Security** | JWT auth with a token blacklist on logout, rate limiting on auth and API routes, per-user report isolation |
+| **Status** | Deployed on Vercel and Render. The backend has 2 smoke tests; there are no end-to-end tests and no formal evaluation of AI output quality yet. |
+| **Built with** | AI coding tools (Claude Code, Google Antigravity) |
+
+### How it works
+1. The React app sends the job description, a self-description and an optional PDF resume to the Express API.
+2. The API extracts the PDF text and calls Gemini with a prompt that restricts answers to the candidate's evidence. The response must match a Zod-derived JSON schema.
+3. Reports and resume-tailoring jobs are stored in MongoDB and are only returned to the user who created them.
+4. For resume export, a shared headless Chrome (Puppeteer) instance inside the Docker image prints the resume to PDF.
+
+### Known limitations
+- No automated check of how good or correct the AI answers are.
+- Tests are limited to two backend smoke tests.
+
+
 Evidence-based AI interview preparation and ATS resume tailoring platform built with React, Node.js, Express, MongoDB, and Google Gemini.
 
 ---
