@@ -1,6 +1,8 @@
 # Interview Intelligence & ATS Resume Studio
 
-> **Live demo:** https://interview-ai-assistance.vercel.app/app (React frontend on Vercel, Express API on Render)
+> **Live demo:** https://interview-ai-assistance.vercel.app/ (React frontend on Vercel, Express API on Render; the free API can take up to a minute to wake)
+
+![Interview Intelligence landing page](docs/landing.png)
 
 | | |
 |---|---|
