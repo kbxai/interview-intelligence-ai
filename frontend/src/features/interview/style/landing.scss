@@ -41,8 +41,7 @@
                 border-radius: 999px;
                 background: $accent-soft;
                 color: $accent;
-                letter-spacing: 0.08em;
-                text-transform: uppercase;
+                letter-spacing: 0.01em;
             }
         }
 
@@ -144,8 +143,7 @@
             font-size: 0.75rem;
             font-weight: 800;
             color: $accent;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.01em;
             margin-bottom: 1rem;
         }
 
@@ -226,44 +224,14 @@
             }
         }
 
-        .hero-trust-bar {
-            margin-top: 3.5rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(221, 217, 210, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: clamp(1rem, 4vw, 3rem);
-            flex-wrap: wrap;
-
-            .trust-item {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 0.25rem;
-
-                .trust-number {
-                    font-family: $serif;
-                    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-                    font-weight: 700;
-                    color: $ink;
-                    line-height: 1.1;
-                }
-
-                .trust-label {
-                    font-size: 0.76rem;
-                    color: $muted;
-                    font-weight: 600;
-                    text-transform: uppercase;
-                    letter-spacing: 0.05em;
-                }
-            }
-
-            .trust-divider {
-                width: 1px;
-                height: 2.2rem;
-                background: $line;
-            }
+        .hero-built-with {
+            margin: 3rem auto 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid $line;
+            max-width: 62ch;
+            font-size: 0.9rem;
+            line-height: 1.55;
+            color: $muted;
         }
     }
 
@@ -313,7 +281,6 @@
                         font-size: 0.7rem;
                         font-weight: 700;
                         color: $muted;
-                        text-transform: uppercase;
                     }
 
                     strong {
@@ -344,8 +311,7 @@
                     h4 {
                         font-size: 0.8rem;
                         color: $accent;
-                        text-transform: uppercase;
-                        letter-spacing: 0.1em;
+                        letter-spacing: 0.01em;
                         margin-bottom: 0.5rem;
                         font-weight: 800;
                     }
@@ -412,8 +378,7 @@
                 font-size: 0.75rem;
                 font-weight: 800;
                 color: $accent;
-                text-transform: uppercase;
-                letter-spacing: 0.12em;
+                letter-spacing: 0.01em;
             }
 
             h2 {
@@ -514,8 +479,7 @@
                     font-size: 0.72rem;
                     font-weight: 800;
                     color: $accent;
-                    text-transform: uppercase;
-                    letter-spacing: 0.12em;
+                    letter-spacing: 0.01em;
                     margin-bottom: 0.65rem;
                 }
 
@@ -669,8 +633,7 @@
                         border-radius: 999px;
                         background: $accent-soft;
                         color: $accent;
-                        letter-spacing: 0.08em;
-                        text-transform: uppercase;
+                        letter-spacing: 0.01em;
                     }
                 }
 
@@ -695,8 +658,7 @@
                         font-size: 0.75rem;
                         font-weight: 800;
                         color: $accent;
-                        text-transform: uppercase;
-                        letter-spacing: 0.1em;
+                        letter-spacing: 0.01em;
                     }
 
                     a {
@@ -721,6 +683,16 @@
             p {
                 color: $muted;
                 font-size: 0.82rem;
+
+                a {
+                    color: $ink;
+                    text-underline-offset: 2px;
+
+                    &:hover,
+                    &:focus-visible {
+                        color: $accent;
+                    }
+                }
             }
         }
     }
@@ -786,13 +758,6 @@
             }
         }
 
-        .hero-trust-bar {
-            gap: 1.5rem;
-
-            .trust-divider {
-                display: none;
-            }
-        }
 
         .landing-footer {
             .footer-content {
@@ -800,29 +765,6 @@
                 gap: 2rem;
             }
         }
-    }
-}
-
-@supports (animation-timeline: view()) {
-    .preview-card-wrap,
-    .steps-section,
-    .features-section,
-    .faq-section,
-    .final-cta-section {
-        animation: landing-reveal linear both;
-        animation-timeline: view();
-        animation-range: entry 10% cover 30%;
-    }
-}
-
-@keyframes landing-reveal {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
     }
 }
 

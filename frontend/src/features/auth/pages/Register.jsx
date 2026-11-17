@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../auth.form.scss'
 import { Link, useNavigate } from 'react-router'
 import { useAuth } from '../hooks/useAuth.js'
+import ServerWaitNote from '../../../components/ServerWaitNote.jsx'
 
 const Register = () => {
     const navigate = useNavigate()
@@ -100,6 +101,7 @@ const Register = () => {
                     <button className="button primary-button" type="submit" disabled={isSubmitting}>
                         {isSubmitting ? 'Creating account...' : 'Create account'}
                     </button>
+                    {isSubmitting && <ServerWaitNote />}
                 </form>
                 <p className="form-meta">Already have an account? <Link to="/login">Sign in</Link></p>
             </div>

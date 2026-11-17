@@ -177,3 +177,12 @@ main.auth-page {
         animation: none;
     }
 }
+
+.server-wait-note {
+    margin: 0.75rem 0 0;
+    max-width: 34ch;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: $muted;
+    text-align: center;
+}

@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { useAuth } from '../../auth/hooks/useAuth.js';
+import { wakeServer } from '../../../lib/wakeServer.js';
 import '../style/landing.scss';
 
 const Landing = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const [menuOpen, setMenuOpen] = useState(false);
+
+    // The API runs on a free plan that sleeps; start waking it while the visitor reads.
+    useEffect(() => { wakeServer(); }, []);
 
     return (
         <main className="landing-page">
@@ -32,7 +36,7 @@ const Landing = () => {
 
                 <div className="nav-actions">
                     {user ? (
-                        <Link to="/app" className="btn-primary">Go to app &rarr;</Link>
+                        <Link to="/app" className="btn-primary">Go to app</Link>
                     ) : (
                         <>
                             <Link to="/login" className="btn-link">Sign in</Link>
@@ -43,45 +47,30 @@ const Landing = () => {
             </header>
 
             <section id="main-content" className="hero-section">
-                <span className="eyebrow">Evidence-based interview coaching</span>
                 <h1>Turn job descriptions and your resume into a targeted preparation plan.</h1>
                 <p className="hero-lead">
                     No generic advice or fabricated experience. We analyze your actual background against role requirements to produce technical questions, behavioral strategies, and an ATS-tailored resume.
                 </p>
                 <div className="hero-ctas">
                     {user ? (
-                        <Link to="/app" className="cta-primary">Open your workspace &rarr;</Link>
+                        <Link to="/app" className="cta-primary">Open your workspace</Link>
                     ) : (
-                        <Link to="/register" className="cta-primary">Start your preparation &rarr;</Link>
+                        <Link to="/register" className="cta-primary">Try it free</Link>
                     )}
-                    <a href="#preview" className="cta-secondary">See sample report</a>
+                    <a href="#preview" className="cta-secondary">See an example</a>
                 </div>
 
-                <div className="hero-trust-bar">
-                    <div className="trust-item">
-                        <span className="trust-number">10,000+</span>
-                        <span className="trust-label">Questions mapped</span>
-                    </div>
-                    <div className="trust-divider" />
-                    <div className="trust-item">
-                        <span className="trust-number">100%</span>
-                        <span className="trust-label">Evidence-grounded</span>
-                    </div>
-                    <div className="trust-divider" />
-                    <div className="trust-item">
-                        <span className="trust-number">3 Min</span>
-                        <span className="trust-label">Average briefing time</span>
-                    </div>
-                </div>
+                <p className="hero-built-with">
+                    Built with React, Express, MongoDB and Gemini. Every report must match a fixed JSON schema before it is saved.
+                </p>
             </section>
 
             <section id="preview" className="preview-card-wrap" aria-label="Sample Analysis Preview">
                 <div className="preview-card">
                     <div className="preview-top">
                         <div className="preview-title-group">
-                            <span className="eyebrow">Simulated Demo Example</span>
-                            <h3>Example Role: Full Stack Engineer</h3>
-                            <span className="preview-sub">Illustrative sample showing how our AI organizes interview questions and skill gaps</span>
+                            <h3>Example role: Full Stack Engineer</h3>
+                            <span className="preview-sub">An illustration of how a report is laid out. The values here are made up for the example.</span>
                         </div>
                         <div className="preview-score-box">
                             <span>Role Match</span>
@@ -113,8 +102,7 @@ const Landing = () => {
 
             <section id="how-it-works" className="steps-section">
                 <div className="section-header">
-                    <span className="section-kicker">Simple 3-step process</span>
-                    <h2>How Interview Intelligence works</h2>
+                    <h2>How it works</h2>
                 </div>
 
                 <div className="steps-grid">
@@ -127,7 +115,7 @@ const Landing = () => {
                     <div className="step-card">
                         <span className="step-num">02</span>
                         <h3>Evidence-based extraction</h3>
-                        <p>Our AI analyzes only documented skills and experience from your inputs without hallucinating fake credentials.</p>
+                        <p>Gemini reads your inputs. The prompt tells it to use only the skills and experience they show, and to say so when you have no evidence for something.</p>
                     </div>
 
                     <div className="step-card">
@@ -168,13 +156,12 @@ const Landing = () => {
 
             <section id="faq" className="faq-section">
                 <div className="section-header">
-                    <span className="eyebrow">Got questions?</span>
-                    <h2>Frequently asked questions</h2>
+                    <h2>Questions</h2>
                 </div>
 
                 <div className="faq-item">
                     <h3>Does the AI make up jobs or skills I haven't done?</h3>
-                    <p>No. Our prompts and schema strictly enforce evidence-based generation. When a question touches on an area you haven't demonstrated, suggested answers advise transparent acknowledgment rather than inventing credentials.</p>
+                    <p>It is told not to. The prompt asks for answers built only on what your resume shows, and when a question touches an area you haven't demonstrated, the suggested answer says so plainly. Language models can still be wrong, so read every answer before you rely on it.</p>
                 </div>
 
                 <div className="faq-item">
@@ -188,22 +175,22 @@ const Landing = () => {
                 </div>
 
                 <div className="faq-item">
-                    <h3>Is my uploaded resume saved or shared publicly?</h3>
-                    <p>No. Your resume is parsed strictly for report generation and your tailored briefings are private to your authenticated account.</p>
+                    <h3>What happens to my resume?</h3>
+                    <p>The text of your resume is sent to Google's Gemini API to write the report, and it is stored with the report so you can open it again. Reports are visible only to your account. There is no delete button yet, so upload a version you are comfortable storing.</p>
                 </div>
             </section>
 
             <section className="final-cta-section">
                 <div className="cta-card">
-                    <h2>Ready to build your interview edge?</h2>
-                    <p>Start preparing with targeted questions, clear roadmap milestones, and a tailored resume built for your next role.</p>
+                    <h2>Try it with your own resume</h2>
+                    <p>A free account is all you need. The server runs on a free plan, so the first request can take up to a minute while it starts.</p>
                     {user ? (
                         <button type="button" className="btn-accent" onClick={() => navigate('/app')}>
-                            Go to workspace &rarr;
+                            Go to workspace
                         </button>
                     ) : (
                         <button type="button" className="btn-accent" onClick={() => navigate('/register')}>
-                            Create your free account &rarr;
+                            Create a free account
                         </button>
                     )}
                 </div>
@@ -238,7 +225,10 @@ const Landing = () => {
                 </div>
 
                 <div className="footer-bottom">
-                    <p>&copy; {new Date().getFullYear()} Interview Intelligence. All rights reserved.</p>
+                    <p>
+                        A project by <a href="https://kbxai.github.io">Kartik Bajaj</a>.
+                        Source on <a href="https://github.com/kbxai/interview-intelligence-ai">GitHub</a>.
+                    </p>
                 </div>
             </footer>
         </main>

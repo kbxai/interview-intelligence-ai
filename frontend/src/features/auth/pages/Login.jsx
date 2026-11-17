@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../auth.form.scss'
 import { Link, useNavigate } from 'react-router'
 import { useAuth } from '../hooks/useAuth.js'
+import ServerWaitNote from '../../../components/ServerWaitNote.jsx'
 
 const Login = () => {
     const { handleLogin, loading } = useAuth()
@@ -32,6 +33,7 @@ const Login = () => {
                 <div className="auth-loading-card">
                     <span className="auth-spinner" />
                     <span>Loading your session...</span>
+                    <ServerWaitNote />
                 </div>
             </main>
         )
@@ -79,6 +81,7 @@ const Login = () => {
                     <button className="button primary-button" type="submit" disabled={isSubmitting}>
                         {isSubmitting ? 'Signing in...' : 'Sign in'}
                     </button>
+                    {isSubmitting && <ServerWaitNote />}
                 </form>
                 <p className="form-meta">Don't have an account? <Link to="/register">Create an account</Link></p>
             </div>
